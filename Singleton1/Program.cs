@@ -32,7 +32,7 @@ namespace Singleton1
     {
         private static DateTime timeStart = DateTime.Now;
         private static RomanEmployee instance;
-        protected RomanEmployee() { timeStart = DateTime.Now; }
+        protected RomanEmployee() {}
         public static RomanEmployee Start() => instance == null ? instance = new RomanEmployee() : instance;
         public static bool IsWorking() => instance != null ? true : false;
         public static RomanEmployee Stop() =>  instance = null;
