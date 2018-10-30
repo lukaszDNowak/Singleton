@@ -14,6 +14,8 @@ namespace Singleton1
             Console.WriteLine("Roman rozpoczyna pracê");
             var roman = RomanEmployee.Start();
             Console.WriteLine($"Pracownik jest w pracy: {RomanEmployee.IsWorking()}");
+            Thread.Sleep(2000);
+            Console.WriteLine($"Pracownik pracuje ju¿ { RomanEmployee.WorkingTime()} ");
             Console.WriteLine("Roman koñczy pracê");
             RomanEmployee.Stop();
             Console.WriteLine($"Pracownik jest w pracy: {RomanEmployee.IsWorking()}");
@@ -30,10 +32,14 @@ namespace Singleton1
 
     public class RomanEmployee
     {
-        private static DateTime timeStart = DateTime.Now;
+        private static DateTime timeStart;
         private static RomanEmployee instance;
         protected RomanEmployee() {}
-        public static RomanEmployee Start() => instance == null ? instance = new RomanEmployee() : instance;
+        public static RomanEmployee Start()
+        {
+           timeStart = DateTime.Now;
+           return instance == null ? instance = new RomanEmployee() : instance;
+        }
         public static bool IsWorking() => instance != null ? true : false;
         public static RomanEmployee Stop() =>  instance = null;
 
